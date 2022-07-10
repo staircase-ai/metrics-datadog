@@ -3,8 +3,8 @@
  */
 
 allprojects {
-    group = 'org.coursera'
-    version = '2.0.0-RC1'
+    group = 'org.staircase'
+    version = '1.0.0'
 }
 
 subprojects {

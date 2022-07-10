@@ -4,18 +4,18 @@ import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.ScheduledReporter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import org.coursera.metrics.datadog.DatadogReporter;
-import org.coursera.metrics.datadog.DefaultMetricNameFormatterFactory;
-import org.coursera.metrics.datadog.DynamicTagsCallbackFactory;
-import org.coursera.metrics.datadog.MetricNameFormatterFactory;
-import org.coursera.metrics.datadog.transport.AbstractTransportFactory;
+import org.staircase.metrics.datadog.DatadogReporter;
+import org.staircase.metrics.datadog.DefaultMetricNameFormatterFactory;
+import org.staircase.metrics.datadog.DynamicTagsCallbackFactory;
+import org.staircase.metrics.datadog.MetricNameFormatterFactory;
+import org.staircase.metrics.datadog.transport.AbstractTransportFactory;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.EnumSet;
 import java.util.List;
 
-import static org.coursera.metrics.datadog.DatadogReporter.Expansion;
+import static org.staircase.metrics.datadog.DatadogReporter.Expansion;
 
 @JsonTypeName("datadog")
 public class DatadogReporterFactory extends BaseReporterFactory {
