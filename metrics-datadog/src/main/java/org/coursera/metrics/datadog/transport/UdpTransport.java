@@ -1,8 +1,7 @@
 package org.coursera.metrics.datadog.transport;
 
-import com.timgroup.statsd.NonBlockingStatsDClient;
+import com.timgroup.statsd.NonBlockingStatsDClientBuilder;
 import com.timgroup.statsd.StatsDClient;
-import com.timgroup.statsd.StatsDClientErrorHandler;
 import org.coursera.metrics.datadog.model.DatadogCounter;
 import org.coursera.metrics.datadog.model.DatadogGauge;
 import org.slf4j.Logger;
@@ -27,7 +26,7 @@ public class UdpTransport implements Transport {
 
   private static final Logger LOG = LoggerFactory.getLogger(UdpTransport.class);
   private final StatsDClient statsd;
-  private final Map lastSeenCounters = new HashMap<String, Long>();
+  private final Map<String, Long> lastSeenCounters = new HashMap<String, Long>();
 
   private UdpTransport(String prefix, String statsdHost, int port, boolean isRetryingLookup, String[] globalTags) {
     final Callable<SocketAddress> socketAddressCallable;
@@ -38,17 +37,14 @@ public class UdpTransport implements Transport {
       socketAddressCallable = staticAddressResolver(statsdHost, port);
     }
 
-    statsd = new NonBlockingStatsDClient(
-            prefix,
-            Integer.MAX_VALUE,
-            globalTags,
-            new StatsDClientErrorHandler() {
-              public void handle(Exception e) {
-                LOG.error(e.getMessage(), e);
-              }
-            },
-            socketAddressCallable
-    );
+    statsd = new NonBlockingStatsDClientBuilder()
+            .prefix(prefix)
+            .queueSize(Integer.MAX_VALUE)
+            .constantTags(globalTags)
+            .errorHandler(e -> LOG.error(e.getMessage(), e))
+            .addressLookup(socketAddressCallable)
+            .build();
+
   }
 
   public void close() throws IOException {
@@ -156,7 +152,7 @@ public class UdpTransport implements Transport {
   // Visible for testing.
   static Callable<SocketAddress> staticAddressResolver(final String host, final int port) {
     try {
-      return NonBlockingStatsDClient.staticAddressResolution(host, port);
+      return NonBlockingStatsDClientBuilder.staticAddressResolution(host, port);
     } catch(final Exception e) {
       LOG.error("Error during constructing statsd address resolver.", e);
       throw new RuntimeException(e);
@@ -165,6 +161,6 @@ public class UdpTransport implements Transport {
 
   // Visible for testing.
   static Callable<SocketAddress> volatileAddressResolver(final String host, final int port) {
-    return NonBlockingStatsDClient.volatileAddressResolution(host, port);
+    return NonBlockingStatsDClientBuilder.volatileAddressResolution(host, port);
   }
 }
