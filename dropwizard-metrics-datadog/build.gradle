@@ -14,7 +14,3 @@ dependencies {
 }
 
 description = 'Dropwizard Datadog Reporter'
-
-java {
-    withJavadocJar()
-}

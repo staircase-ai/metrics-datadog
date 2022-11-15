@@ -18,7 +18,3 @@ dependencies {
 }
 
 description = 'Datadog Metrics Reporter'
-
-java {
-    withJavadocJar()
-}
