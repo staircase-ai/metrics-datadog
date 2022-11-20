@@ -38,7 +38,6 @@ import scala.concurrent.duration.SECONDS
 val expansions = EnumSet.of(COUNT, RATE_1_MINUTE, RATE_15_MINUTE, MEDIAN, P95, P99)
 val httpTransport = new HttpTransport.Builder().withApiKey(apiKey).build()
 val reporter = DatadogReporter.forRegistry(registry)
-  .withEC2Host()
   .withTransport(httpTransport)
   .withExpansions(expansions)
   .build()
@@ -283,21 +282,15 @@ See above instructions for details.
 
 ## Maven Info
 
-Metrics datadog reporter is available as an artifact on
-[Maven Central](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.staircase%22%20AND%20a%3A%22metrics-datadog%22)
+Metrics datadog reporter is accessible on this repository as an artifact as a Github package.
+[Github Packages](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.staircase%22%20AND%20a%3A%22metrics-datadog%22)
 
 * Group: org.staircase
 * Artifact: metrics-datadog
-* Version: 1.1.13
+* Version: 3.0.0
 
-Dropwizard datadog reporter is available as an artifact on
-[Maven Central](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.staircase%22%20AND%20a%3A%22dropwizard-metrics-datadog%22)
+Dropwizard datadog reporter is accessible on this repository as an artifact as a Github package.
 
 * Group: org.staircase
 * Artifact: dropwizard-metrics-datadog
-* Version: 1.1.13
-
-## Contributing
-
-We follow Google's [Java Code
-Style](https://google.github.io/styleguide/javaguide.html)
+* Version: 3.0.0

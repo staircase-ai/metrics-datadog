@@ -292,11 +292,6 @@ public class DatadogReporter extends ScheduledReporter {
       return this;
     }
 
-    public Builder withEC2Host() throws IOException {
-      this.host = AwsHelper.getEc2InstanceId();
-      return this;
-    }
-
     public Builder withExpansions(EnumSet<Expansion> expansions) {
       this.expansions = expansions;
       return this;
