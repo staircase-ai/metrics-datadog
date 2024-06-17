@@ -11,7 +11,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 8
+          java-version: 21
       - name: Build with Gradle
         run: ./gradlew build
   publish:
@@ -27,6 +27,6 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 8
+          java-version: 21
       - name: Publish with Gradle
         run: ./gradlew publish

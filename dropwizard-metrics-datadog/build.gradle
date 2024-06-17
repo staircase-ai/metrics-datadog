@@ -8,7 +8,7 @@ repositories {
 
 dependencies {
     implementation project(':metrics-datadog')
-    implementation 'io.dropwizard:dropwizard-metrics:2.1.4'
+    implementation 'io.dropwizard:dropwizard-metrics:4.0.7'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.easytesting:fest-assert-core:2.0M10'
 }
