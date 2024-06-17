@@ -3,7 +3,6 @@ package org.staircase.metrics.datadog.transport;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.dropwizard.util.Duration;
-
 import jakarta.validation.constraints.NotNull;
 
 @JsonTypeName("http")
