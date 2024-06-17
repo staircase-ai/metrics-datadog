@@ -12,13 +12,4 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
 }
 
-tasks.named('test', Test) {
-    useJUnitPlatform()
-
-    testLogging {
-        events("passed", "skipped", "failed")
-        showExceptions = true
-    }
-}
-
 description = 'Dropwizard Datadog Reporter'
