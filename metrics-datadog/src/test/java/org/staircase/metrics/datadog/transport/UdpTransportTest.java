@@ -1,16 +1,15 @@
 package org.staircase.metrics.datadog.transport;
 
 import com.alibaba.dcm.DnsCacheManipulator;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.net.SocketAddress;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UdpTransportTest {
   private static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
@@ -18,7 +17,7 @@ public class UdpTransportTest {
   private static final String TEST_HOST = "fastandunresolvable";
   private static final int TEST_PORT = 1111;
 
-  @Before
+  @BeforeEach
   public void cleanDnsCache() {
     DnsCacheManipulator.clearDnsCache();
   }
@@ -31,14 +30,14 @@ public class UdpTransportTest {
     assertNotNull(transport);
   }
 
-  @Test(expected = RuntimeException.class)
+  @Test
   public void constructsWhenUnreachableHostWithRetry() {
-    assertNotNull(new UdpTransport.Builder().withStatsdHost(TEST_HOST).withRetryingLookup(true).build());
+    assertThrows(RuntimeException.class, () -> new UdpTransport.Builder().withStatsdHost(TEST_HOST).withRetryingLookup(true).build());
   }
 
-  @Test(expected = RuntimeException.class)
+  @Test
   public void throwsWhenUnreachableHost() {
-    new UdpTransport.Builder().withStatsdHost(TEST_HOST).build();
+    assertThrows(RuntimeException.class, () -> new UdpTransport.Builder().withStatsdHost(TEST_HOST).build());
   }
 
   @Test

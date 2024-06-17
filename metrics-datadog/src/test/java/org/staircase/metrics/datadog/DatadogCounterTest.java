@@ -1,12 +1,12 @@
 package org.staircase.metrics.datadog;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.staircase.metrics.datadog.model.DatadogCounter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DatadogCounterTest {
 
