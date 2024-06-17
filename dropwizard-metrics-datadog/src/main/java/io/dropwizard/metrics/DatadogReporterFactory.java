@@ -4,14 +4,15 @@ import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.ScheduledReporter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import io.dropwizard.metrics.common.BaseReporterFactory;
 import org.staircase.metrics.datadog.DatadogReporter;
 import org.staircase.metrics.datadog.DefaultMetricNameFormatterFactory;
 import org.staircase.metrics.datadog.DynamicTagsCallbackFactory;
 import org.staircase.metrics.datadog.MetricNameFormatterFactory;
 import org.staircase.metrics.datadog.transport.AbstractTransportFactory;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import java.util.EnumSet;
 import java.util.List;
 
