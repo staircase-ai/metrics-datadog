@@ -287,10 +287,10 @@ Metrics datadog reporter is accessible on this repository as an artifact as a Gi
 
 * Group: org.staircase
 * Artifact: metrics-datadog
-* Version: 3.0.0
+* Version: 3.1.1
 
 Dropwizard datadog reporter is accessible on this repository as an artifact as a Github package.
 
 * Group: org.staircase
 * Artifact: dropwizard-metrics-datadog
-* Version: 3.0.0
+* Version: 3.1.1
