@@ -37,7 +37,7 @@ dependencies {
     implementation 'com.datadoghq:java-dogstatsd-client:4.4.2'
     //override jnr to latest to fix vulnerabilities
     implementation 'com.github.jnr:jnr-unixsocket:0.38.22'
-    implementation 'org.slf4j:slf4j-simple:2.0.12'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.12'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testImplementation 'org.mockito:mockito-core:5.12.0'
 }
