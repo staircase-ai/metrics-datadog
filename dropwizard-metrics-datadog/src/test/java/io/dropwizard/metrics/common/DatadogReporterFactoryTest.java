@@ -1,14 +1,14 @@
-package org.staircase.metrics.datadog.transport;
+package io.dropwizard.metrics.common;
 
 import io.dropwizard.jackson.DiscoverableSubtypeResolver;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HttpTransportFactoryTest {
+public class DatadogReporterFactoryTest {
   @Test
-  public void isDiscoverable() {
+  public void isDiscoverable() throws Exception {
     var subtypes = new DiscoverableSubtypeResolver().getDiscoveredSubtypes();
-    assertTrue(subtypes.contains(HttpTransportFactory.class));
+    assertTrue(subtypes.contains(DatadogReporterFactory.class));
   }
 }

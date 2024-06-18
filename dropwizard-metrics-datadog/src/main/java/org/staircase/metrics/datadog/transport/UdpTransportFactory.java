@@ -2,8 +2,7 @@ package org.staircase.metrics.datadog.transport;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @JsonTypeName("udp")
 public class UdpTransportFactory implements AbstractTransportFactory {

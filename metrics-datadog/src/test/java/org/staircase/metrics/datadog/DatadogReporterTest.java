@@ -2,8 +2,8 @@ package org.staircase.metrics.datadog;
 
 import com.codahale.metrics.Timer;
 import com.codahale.metrics.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.staircase.metrics.datadog.model.DatadogGauge;
 import org.staircase.metrics.datadog.transport.Transport;
@@ -29,7 +29,7 @@ public class DatadogReporterTest {
   private DatadogReporter reporterWithCallback;
   private List<String> tags;
 
-  @Before
+  @BeforeEach
   public void setUp() throws IOException {
     when(clock.getTime()).thenReturn(timestamp * 1000);
     when(transport.prepare()).thenReturn(request);

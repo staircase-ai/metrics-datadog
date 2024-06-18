@@ -3,20 +3,30 @@ plugins {
 }
 allprojects {
     group = 'org.staircase'
-    version = '3.0.0'
+    version = '3.1.0'
 }
 
 subprojects {
     apply plugin: 'java'
 
-    sourceCompatibility = '1.8'
+    sourceCompatibility = '21'
+    targetCompatibility = '21'
 
     java {
         withSourcesJar()
     }
 
-    tasks.withType(JavaCompile) {
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = 'UTF-8'
+    }
+
+    tasks.withType(Test).configureEach {
+        useJUnitPlatform()
+
+        testLogging {
+            events("passed", "skipped", "failed")
+            showExceptions = true
+        }
     }
 
     publishing {
