@@ -151,7 +151,6 @@ public class DatadogReporter extends ScheduledReporter {
 
   private void reportHistogram(String name, Histogram histogram, long timestamp, List<String> tags)
       throws IOException {
-    final Snapshot snapshot = histogram.getSnapshot();
 
     if (expansions.contains(Expansion.COUNT)) {
       request.addGauge(new DatadogGauge(
@@ -160,6 +159,11 @@ public class DatadogReporter extends ScheduledReporter {
           timestamp,
           host,
           tags));
+    }
+
+    final Snapshot snapshot = histogram.getSnapshot();
+    if (snapshot.size() == 0) {
+      return;
     }
 
     Number[] values = { snapshot.getMax(), snapshot.getMean(), snapshot.getMin(), snapshot.getStdDev(),
