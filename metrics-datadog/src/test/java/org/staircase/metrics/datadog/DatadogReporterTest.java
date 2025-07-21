@@ -188,6 +188,7 @@ public class DatadogReporterTest {
     when(histogram.getCount()).thenReturn(1L);
 
     final Snapshot snapshot = mock(Snapshot.class);
+    when(snapshot.size()).thenReturn(1);
     when(snapshot.getMax()).thenReturn(2L);
     when(snapshot.getMean()).thenReturn(3.0);
     when(snapshot.getMin()).thenReturn(4L);
@@ -220,6 +221,31 @@ public class DatadogReporterTest {
     inOrder.verify(request).addGauge(new DatadogGauge("histogram.p98", 9.0, timestamp, HOST, tags));
     inOrder.verify(request).addGauge(new DatadogGauge("histogram.p99", 10.0, timestamp, HOST, tags));
     inOrder.verify(request).addGauge(new DatadogGauge("histogram.p999", 11.0, timestamp, HOST, tags));
+    inOrder.verify(request).send();
+
+    verify(transport).prepare();
+    verify(request).send();
+    verifyNoMoreInteractions(transport, request);
+  }
+
+  @Test
+  public void doesNotReportEmptyHistograms() throws Exception {
+    final Histogram histogram = mock(Histogram.class);
+    when(histogram.getCount()).thenReturn(0L);
+
+    final Snapshot snapshot = mock(Snapshot.class);
+    when(snapshot.size()).thenReturn(0);
+    when(histogram.getSnapshot()).thenReturn(snapshot);
+
+    reporter.report(this.map(),
+            this.map(),
+            this.map("histogram", histogram),
+            this.map(),
+            this.map());
+
+    final InOrder inOrder = inOrder(transport, request);
+    inOrder.verify(transport).prepare();
+    inOrder.verify(request).addGauge(new DatadogGauge("histogram.count", 0L, timestamp, HOST, tags));
     inOrder.verify(request).send();
 
     verify(transport).prepare();
